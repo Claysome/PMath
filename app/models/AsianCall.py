@@ -2,11 +2,11 @@ from AsianStrats import MonteCalroPricing
 
 
 class AsianCall:
-    """European call option class"""
+    """Asian call option class"""
     def __init__(self, S0,
                        K,
-                       r,
                        T,
+                       r,
                        sigma,
                        pricing_strats):
         self.S0 = S0
@@ -27,5 +27,5 @@ class AsianCall:
 
 if __name__ == '__main__':
     mc = MonteCalroPricing()
-    call = AsianCall(100, 100, 0.05, 1, 0.3, mc)
+    call = AsianCall(100, 100, 1, 0.05, 0.3, mc)
     print(call.price())

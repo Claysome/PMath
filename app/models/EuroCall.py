@@ -5,8 +5,8 @@ class EuroCall:
     """European call option class"""
     def __init__(self, S0,
                        K,
-                       r,
                        T,
+                       r,
                        sigma,
                        pricing_strats):
         self.S0 = S0
@@ -27,5 +27,5 @@ class EuroCall:
 
 if __name__ == '__main__':
     bsm = BlackScholesPricing()
-    call = EuroCall(100, 100, 0.05, 1, 0.3, bsm)
+    call = EuroCall(100, 100, 1, 0.05, 0.3, bsm)
     print(call.price())
