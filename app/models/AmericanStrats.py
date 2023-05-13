@@ -21,8 +21,8 @@ class BinomialPricing(OptionPricingStrats):
         return V[0]
 
 
-class MonteCalroPricing(OptionPricingStrats):
-    """Monte Calro LS pricing model pricing strategy"""
+class MonteCarloPricing(OptionPricingStrats):
+    """Monte Carlo LS pricing model pricing strategy"""
     def calculate_price(self, S0, K, T, r, sigma, m=2440, n=10000):
         dt = T / m
         df = np.exp(-r * dt)
@@ -42,7 +42,7 @@ class MonteCalroPricing(OptionPricingStrats):
             C = np.polyval(reg, S[:, t])
             V[:, t] = np.where(C > h[:, t], V[:, t + 1] * df, h[:, t])
 
-        val = df * sum(V[:, 1]) / M / S0
+        val = df * sum(V[:, 1]) / M
         return val
 
 
@@ -56,5 +56,5 @@ class MonteCalroPricing(OptionPricingStrats):
 if __name__ == '__main__':
     bp = BinomialPricing()
     print(bp.calculate_price(100, 102, 1, 0.03, 0.2, 1000))
-    mc = MonteCalroPricing()
+    mc = MonteCarloPricing()
     print(mc.calculate_price(100, 102, 1, 0.03, 0.2))
